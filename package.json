@@ -1,0 +1,19 @@
+{
+  "name": "imglab",
+  "version": "0.1.0",
+  "description": "Official imglab Javascript library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imglab-io/imglab-js.git"
+  },
+  "author": "imglab",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/imglab-io/imglab-js/issues"
+  },
+  "homepage": "https://github.com/imglab-io/imglab-js#readme"
+}
