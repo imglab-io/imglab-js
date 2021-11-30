@@ -1,0 +1,28 @@
+name: Node CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build and test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [17]
+    container: node:${{ matrix.node }}
+    steps:
+    - uses: actions/checkout@v2
+    - name: Restore dependencies cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-${{ matrix.node }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: ${{ runner.os }}-${{ matrix.node }}-
+    - name: Install dependencies
+      run: npm install
+    - name: Run tests
+      run: npm run test
