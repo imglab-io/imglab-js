@@ -9,11 +9,19 @@
     "build": "rollup -c",
     "test": "jest"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/imglab-io/imglab-js.git"
   },
-  "author": "imglab",
+  "author": "imglab <support@imglab.io>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/imglab-io/imglab-js/issues"
