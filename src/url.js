@@ -2,14 +2,14 @@ import Source from './source'
 import Signature from './signature'
 import Utils from './utils'
 
-export default class Imglab {
+export default class Url {
   static url(sourceNameOrSource, path, params = {}) {
     if (typeof sourceNameOrSource === 'string') {
-      return Imglab.#urlForSource(new Source(sourceNameOrSource), path, params)
+      return Url.#urlForSource(new Source(sourceNameOrSource), path, params)
     }
 
     if (sourceNameOrSource instanceof Source) {
-      return Imglab.#urlForSource(sourceNameOrSource, path, params)
+      return Url.#urlForSource(sourceNameOrSource, path, params)
     }
 
     throw new Error('Invalid source name or source')
@@ -25,7 +25,7 @@ export default class Imglab {
     url.hostname = source.host
     url.port = source.port
     url.pathname = source.path(normalizedPath)
-    url.search = Imglab.#encodeParams(source, normalizedPath, normalizedParams)
+    url.search = Url.#encodeParams(source, normalizedPath, normalizedParams)
 
     return url.toString()
   }
@@ -33,7 +33,7 @@ export default class Imglab {
 
   static #encodeParams(source, path, params) {
     if (Object.keys(params).length === 0) {
-      return Imglab.#encodeEmptyParams(source, path)
+      return Url.#encodeEmptyParams(source, path)
     }
 
     if (source.isSecure()) {
