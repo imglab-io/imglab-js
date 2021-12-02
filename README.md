@@ -28,7 +28,7 @@ import Imglab from '@imglab/core'
 Imglab.url('assets', 'example.jpeg', { width: 500, height: 600 })
 ```
 
-## Browser
+### Browser
 
 If you prefer to use a `script` tag in your code to load `@imglab/core` try to use [UNPKG](https://unpkg.com) or [JSDELIVR](https://www.jsdelivr.com):
 
