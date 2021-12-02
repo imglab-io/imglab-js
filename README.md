@@ -57,7 +57,7 @@ Imglab.url(new Imglab.Source('assets'), 'image.jpeg', { width: 500, height: 600 
 
 ### Using secure image sources
 
-For sources that require signed URLs you can specify `secureKey` and `secureSalt` attributes for the source:
+For sources that require signed URLs you can specify `secureKey` and `secureSalt` attributes:
 
 ```javascript
 const source = new Imglab.Source('assets', { secureKey: 'assets-secure-key', secureSalt: 'assets-secure-salt' })

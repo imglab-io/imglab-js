@@ -22,7 +22,7 @@ export default [
     input: 'src/index.js',
     output: [
       { file: pkg.main, format: 'cjs', exports: 'default', sourcemap: true },
-      { file: pkg.module, format: 'es', exports: 'default', sourcemap: true }
+      { file: pkg.module, format: 'esm', exports: 'default', sourcemap: true }
     ],
     external: ['path', 'crypto']
   }
