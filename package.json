@@ -1,5 +1,5 @@
 {
-  "name": "@imglab/imglab",
+  "name": "@imglab/core",
   "source": "src/index.js",
   "version": "0.1.0",
   "description": "Official imglab Javascript library",

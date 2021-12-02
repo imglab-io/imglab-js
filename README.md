@@ -7,7 +7,7 @@
 You can install imglab using:
 
 ```sh
-$ npm install @imglab/imglab
+$ npm install @imglab/core
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ $ npm install @imglab/imglab
 ### CommonJS
 
 ```javascript
-const Imglab = require('@imglab/imglab')
+const Imglab = require('@imglab/core')
 
 Imglab.url('assets', 'example.jpeg', { width: 500, height: 600 })
 ```
@@ -23,7 +23,7 @@ Imglab.url('assets', 'example.jpeg', { width: 500, height: 600 })
 ### ES6 Modules
 
 ```javascript
-import Imglab from "@imglab/imglab"
+import Imglab from '@imglab/core'
 
 Imglab.url('assets', 'example.jpeg', { width: 500, height: 600 })
 ```
@@ -31,7 +31,7 @@ Imglab.url('assets', 'example.jpeg', { width: 500, height: 600 })
 ## Browser
 
 ```javascript
-// TODO
+Imglab.url('assets', 'example.jpeg', { width: 500, height: 600 })
 ```
 
 ## Generating URLs
