@@ -30,4 +30,21 @@ describe('Utils', () => {
       expect(Utils.normalizeParams({ trim: 'color', trimColor: 'orange' })).toEqual({ trim: 'color', 'trim-color': 'orange' })
     })
   })
+
+  describe('isWebURL', () => {
+    it('returns boolean value indicating whether string is a valid HTTP/HTTPS URL or not', () => {
+      expect(Utils.isWebURL('https://assets.com/example.jpeg')).toBe(true)
+      expect(Utils.isWebURL('http://assets.com/example.jpeg')).toBe(true)
+      expect(Utils.isWebURL('HTTPS://assets.com/example.jpeg')).toBe(true)
+      expect(Utils.isWebURL('HTTP://assets.com/example.jpeg')).toBe(true)
+
+      expect(Utils.isWebURL('')).toBe(false)
+      expect(Utils.isWebURL('example.jpeg')).toBe(false)
+      expect(Utils.isWebURL('https/example.jpeg')).toBe(false)
+      expect(Utils.isWebURL('http/example.jpeg')).toBe(false)
+      expect(Utils.isWebURL('/https/example.jpeg')).toBe(false)
+      expect(Utils.isWebURL('/example.jpeg')).toBe(false)
+      expect(Utils.isWebURL('/http/example.jpeg')).toBe(false)
+    })
+  })
 })

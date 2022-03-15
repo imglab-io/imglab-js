@@ -139,10 +139,22 @@ describe('Url', () => {
       expect(url).toBe('https://cdn.imglab.io/assets/example.jpeg?width=200&height=300&format=png')
     })
 
+    it('returns url with path starting with slash using reserved characters', () => {
+      const url = Url.url('assets', '/example image%2C01%2C02.jpeg', { width: 200, height: 300, format: 'png' })
+
+      expect(url).toBe('https://cdn.imglab.io/assets/example%20image%252C01%252C02.jpeg?width=200&height=300&format=png')
+    })
+
     it('returns url with path starting and ending with slash', () => {
       const url = Url.url('assets', '/example.jpeg/', { width: 200, height: 300, format: 'png' })
 
       expect(url).toBe('https://cdn.imglab.io/assets/example.jpeg?width=200&height=300&format=png')
+    })
+
+    it('returns url with path starting and ending with slash using reserved characters', () => {
+      const url = Url.url('assets', '/example image%2C01%2C02.jpeg/', { width: 200, height: 300, format: 'png' })
+
+      expect(url).toBe('https://cdn.imglab.io/assets/example%20image%252C01%252C02.jpeg?width=200&height=300&format=png')
     })
 
     it('returns url with subfolder path starting with slash', () => {
@@ -151,10 +163,46 @@ describe('Url', () => {
       expect(url).toBe('https://cdn.imglab.io/assets/subfolder/example.jpeg?width=200&height=300&format=png')
     })
 
+    it('returns url with subfolder path starting with slash using reserved characters', () => {
+      const url = Url.url('assets', '/subfolder images/example image%2C01%2C02.jpeg', { width: 200, height: 300, format: 'png' })
+
+      expect(url).toBe('https://cdn.imglab.io/assets/subfolder%20images/example%20image%252C01%252C02.jpeg?width=200&height=300&format=png')
+    })
+
     it('returns url with subfolder path starting and ending with slash', () => {
       const url = Url.url('assets', '/subfolder/example.jpeg/', { width: 200, height: 300, format: 'png'})
 
       expect(url).toBe('https://cdn.imglab.io/assets/subfolder/example.jpeg?width=200&height=300&format=png')
+    })
+
+    it('returns url with subfolder path starting and ending with slash using reserved characters', () => {
+      const url = Url.url('assets', '/subfolder images/example image%2C01%2C02.jpeg/', { width: 200, height: 300, format: 'png' })
+
+      expect(url).toBe('https://cdn.imglab.io/assets/subfolder%20images/example%20image%252C01%252C02.jpeg?width=200&height=300&format=png')
+    })
+
+    it('returns url with path using a http url', () => {
+      const url = Url.url('assets', 'http://assets.com/subfolder/example.jpeg', { width: 200, height: 300, format: 'png' })
+
+      expect(url).toBe('https://cdn.imglab.io/assets/http%3A%2F%2Fassets.com%2Fsubfolder%2Fexample.jpeg?width=200&height=300&format=png')
+    })
+
+    it('returns url with path using a http url with reserved characters', () => {
+      const url = Url.url('assets', 'http://assets.com/subfolder/example%2C01%2C02.jpeg', { width: 200, height: 300, format: 'png' })
+
+      expect(url).toBe('https://cdn.imglab.io/assets/http%3A%2F%2Fassets.com%2Fsubfolder%2Fexample%252C01%252C02.jpeg?width=200&height=300&format=png')
+    })
+
+    it('returns url with path using a https url', () =>  {
+      const url = Url.url('assets', 'https://assets.com/subfolder/example.jpeg', { width: 200, height: 300, format: 'png' })
+
+      expect(url).toBe('https://cdn.imglab.io/assets/https%3A%2F%2Fassets.com%2Fsubfolder%2Fexample.jpeg?width=200&height=300&format=png')
+    })
+
+    it('returns url with path using a https url with reserved characters', () => {
+      const url = Url.url('assets', 'https://assets.com/subfolder/example%2C01%2C02.jpeg', { width: 200, height: 300, format: 'png' })
+
+      expect(url).toBe('https://cdn.imglab.io/assets/https%3A%2F%2Fassets.com%2Fsubfolder%2Fexample%252C01%252C02.jpeg?width=200&height=300&format=png')
     })
   })
 
@@ -335,6 +383,20 @@ describe('Url', () => {
       expect(url).toBe('https://cdn.imglab.io/assets/example.jpeg?width=200&height=300&format=png')
     })
 
+    it('returns url with path starting with slash using reserved characters', () => {
+      const url = Url.url(
+        new Source('assets'),
+        '/example image%2C01%2C02.jpeg',
+        {
+          width: 200,
+          height: 300,
+          format: 'png'
+        }
+      )
+
+      expect(url).toBe('https://cdn.imglab.io/assets/example%20image%252C01%252C02.jpeg?width=200&height=300&format=png')
+    })
+
     it('returns url with path starting and ending with slash', () => {
       const url = Url.url(
         new Source('assets'),
@@ -347,6 +409,20 @@ describe('Url', () => {
       )
 
       expect(url).toBe('https://cdn.imglab.io/assets/example.jpeg?width=200&height=300&format=png')
+    })
+
+    it('returns url with path starting and ending with slash using reserved characters', () => {
+      const url = Url.url(
+        new Source('assets'),
+        '/example image%2C01%2C02.jpeg/',
+        {
+          width: 200,
+          height: 300,
+          format: 'png'
+        }
+      )
+
+      expect(url).toBe('https://cdn.imglab.io/assets/example%20image%252C01%252C02.jpeg?width=200&height=300&format=png')
     })
 
     it('returns url with subfolder path starting with slash', () => {
@@ -363,6 +439,20 @@ describe('Url', () => {
       expect(url).toBe('https://cdn.imglab.io/assets/subfolder/example.jpeg?width=200&height=300&format=png')
     })
 
+    it('returns url with subfolder path starting with slash using reserved characters', () => {
+      const url = Url.url(
+        new Source('assets'),
+        '/subfolder images/example image%2C01%2C02.jpeg',
+        {
+          width: 200,
+          height: 300,
+          format: 'png'
+        }
+      )
+
+      expect(url).toBe('https://cdn.imglab.io/assets/subfolder%20images/example%20image%252C01%252C02.jpeg?width=200&height=300&format=png')
+    })
+
     it('returns url with subfolder path starting and ending with slash', () => {
       const url = Url.url(
         new Source('assets'),
@@ -375,6 +465,75 @@ describe('Url', () => {
       )
 
       expect(url).toBe('https://cdn.imglab.io/assets/subfolder/example.jpeg?width=200&height=300&format=png')
+    })
+
+    it('returns url with subfolder path starting and ending with slash using reserved characters', () => {
+      const url = Url.url(
+        new Source('assets'),
+        '/subfolder images/example image%2C01%2C02.jpeg/',
+        {
+          width: 200,
+          height: 300,
+          format: 'png'
+        })
+
+      expect(url).toBe('https://cdn.imglab.io/assets/subfolder%20images/example%20image%252C01%252C02.jpeg?width=200&height=300&format=png')
+    })
+
+    it('returns url with path using a http url', () => {
+      const url = Url.url(
+        new Source('assets'),
+        'http://assets.com/subfolder/example.jpeg',
+        {
+          width: 200,
+          height: 300,
+          format: 'png'
+        }
+      )
+
+      expect(url).toBe('https://cdn.imglab.io/assets/http%3A%2F%2Fassets.com%2Fsubfolder%2Fexample.jpeg?width=200&height=300&format=png')
+    })
+
+    it('returns url with path using a http url with reserved characters', () => {
+      const url = Url.url(
+        new Source('assets'),
+        'http://assets.com/subfolder/example%2C01%2C02.jpeg',
+        {
+          width: 200,
+          height: 300,
+          format: 'png'
+        }
+      )
+
+      expect(url).toBe('https://cdn.imglab.io/assets/http%3A%2F%2Fassets.com%2Fsubfolder%2Fexample%252C01%252C02.jpeg?width=200&height=300&format=png')
+    })
+
+    it('returns url with path using a https url', () => {
+      const url = Url.url(
+        new Source('assets'),
+        'https://assets.com/subfolder/example.jpeg',
+        {
+          width: 200,
+          height: 300,
+          format: 'png'
+        }
+      )
+
+      expect(url).toBe('https://cdn.imglab.io/assets/https%3A%2F%2Fassets.com%2Fsubfolder%2Fexample.jpeg?width=200&height=300&format=png')
+    })
+
+    it('returns url with path using a https url with reserved characters', () => {
+      const url = Url.url(
+        new Source('assets'),
+        'https://assets.com/subfolder/example%2C01%2C02.jpeg',
+        {
+          width: 200,
+          height: 300,
+          format: 'png'
+        }
+      )
+
+      expect(url).toBe('https://cdn.imglab.io/assets/https%3A%2F%2Fassets.com%2Fsubfolder%2Fexample%252C01%252C02.jpeg?width=200&height=300&format=png')
     })
   })
 
@@ -591,6 +750,20 @@ describe('Url', () => {
       expect(url).toBe('https://cdn.imglab.io/assets/example.jpeg?width=200&height=300&format=png&signature=VJ159IlBl_AlN59QWvyJov5SlQXlrZNpXgDJLJgzP8g')
     })
 
+    it('returns url with path starting with slash using reserved characters', () => {
+      const url = Url.url(
+        new Source('assets', { secureKey: SECURE_KEY, secureSalt: SECURE_SALT }),
+        '/example image%2C01%2C02.jpeg',
+        {
+          width: 200,
+          height: 300,
+          format: 'png'
+        }
+      )
+
+      expect(url).toBe('https://cdn.imglab.io/assets/example%20image%252C01%252C02.jpeg?width=200&height=300&format=png&signature=yZcUhTCB9VB3qzjyIJCCX_pfJ76Gb6kHe7KwusAPl-w')
+    })
+
     it('returns url with path starting and ending with slash', () => {
       const url = Url.url(
         new Source('assets', { secureKey: SECURE_KEY, secureSalt: SECURE_SALT }),
@@ -603,6 +776,20 @@ describe('Url', () => {
       )
 
       expect(url).toBe('https://cdn.imglab.io/assets/example.jpeg?width=200&height=300&format=png&signature=VJ159IlBl_AlN59QWvyJov5SlQXlrZNpXgDJLJgzP8g')
+    })
+
+    it('returns url with path starting and ending with slash using reserved characters', () => {
+      const url = Url.url(
+        new Source('assets', { secureKey: SECURE_KEY, secureSalt: SECURE_SALT }),
+        '/example image%2C01%2C02.jpeg/',
+        {
+          width: 200,
+          height: 300,
+          format: 'png'
+        }
+      )
+
+      expect(url).toBe('https://cdn.imglab.io/assets/example%20image%252C01%252C02.jpeg?width=200&height=300&format=png&signature=yZcUhTCB9VB3qzjyIJCCX_pfJ76Gb6kHe7KwusAPl-w')
     })
 
     it('returns url with subfolder path starting with slash', () => {
@@ -619,6 +806,20 @@ describe('Url', () => {
       expect(url).toBe('https://cdn.imglab.io/assets/subfolder/example.jpeg?width=200&height=300&format=png&signature=3jydAIXhF8Nn_LXKhog2flf7FsACzISi_sXCKmASkOs')
     })
 
+    it('returns url with subfolder path starting with slash using reserved characters', () => {
+      const url = Url.url(
+        new Source('assets', { secureKey: SECURE_KEY, secureSalt: SECURE_SALT }),
+        '/subfolder images/example image%2C01%2C02.jpeg',
+        {
+          width: 200,
+          height: 300,
+          format: 'png'
+        }
+      )
+
+      expect(url).toBe('https://cdn.imglab.io/assets/subfolder%20images/example%20image%252C01%252C02.jpeg?width=200&height=300&format=png&signature=2oAmYelI7UEnvqSSPCfUA25TmS7na1FRVTaxfe5ADyY')
+    })
+
     it('returns url with subfolder path starting and ending with slash', () => {
       const url = Url.url(
         new Source('assets', { secureKey: SECURE_KEY, secureSalt: SECURE_SALT }),
@@ -631,6 +832,76 @@ describe('Url', () => {
       )
 
       expect(url).toBe('https://cdn.imglab.io/assets/subfolder/example.jpeg?width=200&height=300&format=png&signature=3jydAIXhF8Nn_LXKhog2flf7FsACzISi_sXCKmASkOs')
+    })
+
+    it('returns url with subfolder path starting and ending with slash using reserved characters', () => {
+      const url = Url.url(
+        new Source('assets', { secureKey: SECURE_KEY, secureSalt: SECURE_SALT }),
+        '/subfolder images/example image%2C01%2C02.jpeg/',
+        {
+          width: 200,
+          height: 300,
+          format: 'png'
+        }
+      )
+
+      expect(url).toBe('https://cdn.imglab.io/assets/subfolder%20images/example%20image%252C01%252C02.jpeg?width=200&height=300&format=png&signature=2oAmYelI7UEnvqSSPCfUA25TmS7na1FRVTaxfe5ADyY')
+    })
+
+    it('returns url with path using a http url', () => {
+      const url = Url.url(
+        new Source('assets', { secureKey: SECURE_KEY, secureSalt: SECURE_SALT }),
+        'http://assets.com/subfolder/example.jpeg',
+        {
+          width: 200,
+          height: 300,
+          format: 'png'
+        }
+      )
+
+      expect(url).toBe('https://cdn.imglab.io/assets/http%3A%2F%2Fassets.com%2Fsubfolder%2Fexample.jpeg?width=200&height=300&format=png&signature=MuzfKbHDJY6lzeFQGRcsCS8DzxgL4nCpIowOMFLR1kA')
+    })
+
+    it('returns url with path using a http url with reserved characters', () => {
+      const url = Url.url(
+        new Source('assets', { secureKey: SECURE_KEY, secureSalt: SECURE_SALT }),
+        'http://assets.com/subfolder/example%2C01%2C02.jpeg',
+        {
+          width: 200,
+          height: 300,
+          format: 'png'
+        }
+      )
+
+      expect(url).toBe('https://cdn.imglab.io/assets/http%3A%2F%2Fassets.com%2Fsubfolder%2Fexample%252C01%252C02.jpeg?width=200&height=300&format=png&signature=78e-ysfcy3d0e0rj70QJQ3wpuwI_hAl9ZYxIUVRw62I')
+    })
+
+    it('returns url with path using a https url', () => {
+      const url = Url.url(
+        new Source('assets', { secureKey: SECURE_KEY, secureSalt: SECURE_SALT }),
+        'https://assets.com/subfolder/example.jpeg',
+        {
+          width: 200,
+          height: 300,
+          format: 'png'
+        }
+      )
+
+      expect(url).toBe('https://cdn.imglab.io/assets/https%3A%2F%2Fassets.com%2Fsubfolder%2Fexample.jpeg?width=200&height=300&format=png&signature=7Dp8Q01u_5YmpmH-j_y4P5vzOn_9EGvh77B3fi2Ke-s')
+    })
+
+    it('returns url with path using a https url with reserved characters', () => {
+      const url = Url.url(
+        new Source('assets', { secureKey: SECURE_KEY, secureSalt: SECURE_SALT }),
+        'https://assets.com/subfolder/example%2C01%2C02.jpeg',
+        {
+          width: 200,
+          height: 300,
+          format: 'png'
+        }
+      )
+
+      expect(url).toBe('https://cdn.imglab.io/assets/https%3A%2F%2Fassets.com%2Fsubfolder%2Fexample%252C01%252C02.jpeg?width=200&height=300&format=png&signature=-zvh2hWXP8bHkoJVh8AdJFe9Kqdd1HpP1c2UmuQcYFQ')
     })
   })
 
