@@ -24,12 +24,21 @@ export default class Url {
     url.protocol = source.scheme()
     url.hostname = source.host
     url.port = source.port
-    url.pathname = source.path(normalizedPath)
+    url.pathname = source.path(Url.#encodePath(normalizedPath))
     url.search = Url.#encodeParams(source, normalizedPath, normalizedParams)
 
     return url.toString()
   }
 
+  static #encodePath(path) {
+    if (Utils.isWebURL(path)) {
+      return encodeURIComponent(path)
+    } else {
+      return path.split('/').map((pathComponent) =>
+        encodeURIComponent(pathComponent)
+      ).join('/')
+    }
+  }
 
   static #encodeParams(source, path, params) {
     if (Object.keys(params).length === 0) {

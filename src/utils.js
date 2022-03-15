@@ -3,6 +3,8 @@ export default class Utils {
   static #NORMALIZE_PATH_SUFFIX_REGEXP = new RegExp(/\/*$/)
   static #NORMALIZE_KEY_REGEXP = new RegExp(/([a-z])([A-Z])/g)
 
+  static #WEB_URL_PROTOCOLS = ['https:', 'http:']
+
   static normalizePath(path) {
     return path.replace(Utils.#NORMALIZE_PATH_PREFIX_REGEXP, '').replace(Utils.#NORMALIZE_PATH_SUFFIX_REGEXP, '')
   }
@@ -12,6 +14,16 @@ export default class Utils {
       result[Utils.#normalizeKey(key)] = params[key]
       return result
     }, {})
+  }
+
+  static isWebURL(url) {
+    try {
+      const parsedURL = new URL(url)
+
+      return Utils.#WEB_URL_PROTOCOLS.includes(parsedURL.protocol)
+    } catch {
+      return false
+    }
   }
 
   static #normalizeKey(key) {
