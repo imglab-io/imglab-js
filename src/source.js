@@ -1,7 +1,7 @@
 import _path from 'path'
 
 export default class Source {
-  static #DEFAULT_OPTS = { host: 'cdn.imglab.io', https: true, subdomains: false }
+  static #DEFAULT_OPTS = { host: 'imglab-cdn.net', https: true, subdomains: true }
 
   #host
   #https

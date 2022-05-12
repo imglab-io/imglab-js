@@ -19,7 +19,7 @@ export default class Url {
     var normalizedPath = Utils.normalizePath(path)
     var normalizedParams = Utils.normalizeParams(params)
 
-    var url = new URL('http://cdn.imglab.io')
+    var url = new URL('https://imglab-cdn.net')
 
     url.protocol = source.scheme()
     url.hostname = source.host

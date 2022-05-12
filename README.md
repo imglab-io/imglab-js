@@ -34,9 +34,9 @@ If you prefer to use a `script` tag in your code to load `@imglab/core` try to u
 
 ```html
 <!-- Using UNPKG -->
-<script src="https://unpkg.com/@imglab/core@0.1.1/dist/imglab.umd.js"></script>
+<script src="https://unpkg.com/@imglab/core@0.2.0/dist/imglab.umd.js"></script>
 <!-- Or using JDELIVR -->
-<script src="https://cdn.jsdelivr.net/npm/@imglab/core@0.1.1/dist/imglab.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@imglab/core@0.2.0/dist/imglab.umd.js"></script>
 ```
 
 After adding the library you can use it normally:
@@ -53,17 +53,17 @@ The easiest way to generate a URL is to specify the `sourceName`, `path` and req
 
 ```javascript
 Imglab.url('assets', 'image.jpeg', { width: 500, height: 600 })
-'https://cdn.imglab.io/assets/image.jpeg?width=500&height=600'
+'https://assets.imglab-cdn.net/image.jpeg?width=500&height=600'
 
 Imglab.url('avatars', 'user-01.jpeg', { width: 300, height: 300, mode: 'crop', crop: 'face', format: 'webp' })
-'https://cdn.imglab.io/avatars/user-01.jpeg?width=300&height=300&mode=crop&crop=face&format=webp'
+'https://avatars.imglab-cdn.net/user-01.jpeg?width=300&height=300&mode=crop&crop=face&format=webp'
 ```
 
 If some specific settings are required for the source you can use an instance of `Imglab.Source` class instead of a `string` source name:
 
 ```javascript
 Imglab.url(new Imglab.Source('assets'), 'image.jpeg', { width: 500, height: 600 })
-'https://cdn.imglab.io/assets/image.jpeg?width=500&height=600'
+'https://assets.imglab-cdn.net/image.jpeg?width=500&height=600'
 ```
 
 ### Using secure image sources
@@ -74,7 +74,7 @@ For sources that require signed URLs you can specify `secureKey` and `secureSalt
 const source = new Imglab.Source('assets', { secureKey: 'assets-secure-key', secureSalt: 'assets-secure-salt' })
 
 Imglab.url(source, 'image.jpeg', { width: 500, height: 600 })
-'https://cdn.imglab.io/assets/image.jpeg?width=500&height=600&signature=generated-signature'
+'https://assets.imglab-cdn.net/image.jpeg?width=500&height=600&signature=generated-signature'
 ```
 
 `signature` query parameter will be automatically generated and attached to the returned URL.
@@ -87,7 +87,7 @@ In the case that HTTP schema is required instead of HTTPS you can set `https` at
 
 ```javascript
 Imglab.url(new Imglab.Source('assets', { https: false }), 'image.jpeg', { width: 500, height: 600 })
-'http://cdn.imglab.io/assets/image.jpeg?width=500&height=600'
+'http://assets.imglab-cdn.net/image.jpeg?width=500&height=600'
 ```
 
 > Note: HTTPS is the default and recommended way to generate URLs with imglab.
@@ -100,21 +100,21 @@ The preferred way is to use camel-case key attribute names:
 
 ```javascript
 Imglab.url('assets', 'image.jpeg', { trim: 'color', trimColor: 'black' })
-'https://cdn.imglab.io/assets/image.jpeg?trim=color&trim-color=black'
+'https://assets.imglab-cdn.net/image.jpeg?trim=color&trim-color=black'
 ```
 
 It is possible to use strings attribute keys too:
 
 ```javascript
 Imglab.url('assets', 'image.jpeg', { trim: 'color', 'trim-color': 'black' })
-'https://cdn.imglab.io/assets/image.jpeg?trim=color&trim-color=black'
+'https://assets.imglab-cdn.net/image.jpeg?trim=color&trim-color=black'
 ```
 
 Or even snake-case attribute keys:
 
 ```javascript
 Imglab.url('assets', 'image.jpeg', { trim: 'color', trim_color: 'black' })
-'https://cdn.imglab.io/assets/image.jpeg?trim=color&trim-color=black'
+'https://assets.imglab-cdn.net/image.jpeg?trim=color&trim-color=black'
 ```
 
 ### Specifying color parameters
@@ -124,19 +124,19 @@ Some imglab parameters can receive a color as value. It is possible to specify t
 ```javascript
 // Specifying a RGB color as string
 Imglab.url('assets', 'image.jpeg', { width: 500, height: 600, mode: 'contain', backgroundColor: '255,0,0' })
-'https://cdn.imglab.io/assets/image.jpeg?width=500&height=600&mode=contain&background-color=255%2C0%2C0'
+'https://assets.imglab-cdn.net/image.jpeg?width=500&height=600&mode=contain&background-color=255%2C0%2C0'
 
 // Specifying a RGBA color as string
 Imglab.url('assets', 'image.jpeg', { width: 500, height: 600, mode: 'contain', backgroundColor: '255,0,0,128' })
-'https://cdn.imglab.io/assets/image.jpeg?width=500&height=600&mode=contain&background-color=255%2C0%2C0%2C128'
+'https://assets.imglab-cdn.net/image.jpeg?width=500&height=600&mode=contain&background-color=255%2C0%2C0%2C128'
 
 // Specifying a named color as string
 Imglab.url('assets', 'image.jpeg', { width: 500, height: 600, mode: 'contain', backgroundColor: 'red' })
-'https://cdn.imglab.io/assets/image.jpeg?width=500&height=600&mode=contain&background-color=red'
+'https://assets.imglab-cdn.net/image.jpeg?width=500&height=600&mode=contain&background-color=red'
 
 // Specifying a hexadecimal color as string
 Imglab.url('assets', 'image.jpeg', { width: 500, height: 600, mode: 'contain', backgroundColor: 'F00' })
-'https://cdn.imglab.io/assets/image.jpeg?width=500&height=600&mode=contain&background-color=F00'
+'https://assets.imglab-cdn.net/image.jpeg?width=500&height=600&mode=contain&background-color=F00'
 ```
 
 You can additionally use `Imglab.color` helper function to specify these color values:
@@ -147,15 +147,15 @@ const color = Imglab.color
 
 // Using color helper for a RGB color
 Imglab.url('assets', 'image.jpeg', { width: 500, height: 600, mode: 'contain', backgroundColor: color(255, 0, 0) })
-'https://cdn.imglab.io/assets/image.jpeg?width=500&height=600&mode=contain&background-color=255%2C0%2C0'
+'https://assets.imglab-cdn.net/image.jpeg?width=500&height=600&mode=contain&background-color=255%2C0%2C0'
 
 // Using color helper for a RGBA color
 Imglab.url('assets', 'image.jpeg', { width: 500, height: 600, mode: 'contain', backgroundColor: color(255, 0, 0, 128) })
-'https://cdn.imglab.io/assets/image.jpeg?width=500&height=600&mode=contain&background-color=255%2C0%2C0%2C128'
+'https://assets.imglab-cdn.net/image.jpeg?width=500&height=600&mode=contain&background-color=255%2C0%2C0%2C128'
 
 // Using color helper for a named color
 Imglab.url('assets', 'image.jpeg', { width: 500, height: 600, mode: 'contain', backgroundColor: color('red') })
-'https://cdn.imglab.io/assets/image.jpeg?width=500&height=600&mode=contain&background-color=red'
+'https://assets.imglab-cdn.net/image.jpeg?width=500&height=600&mode=contain&background-color=red'
 ```
 
 > Note: specify hexadecimal color values using `Imglab.color` helper function is not allowed. You can use strings instead.
@@ -167,15 +167,15 @@ Some imglab parameters can receive a position as value. It is possible to specif
 ```javascript
 // Specifying a horizontal and vertical position as string
 Imglab.url('assets', 'image.jpeg', { width: 500, height: 500, mode: 'crop', crop: 'left,top' })
-'https://cdn.imglab.io/assets/image.jpeg?width=500&height=500&mode=crop&crop=left%2Ctop'
+'https://assets.imglab-cdn.net/image.jpeg?width=500&height=500&mode=crop&crop=left%2Ctop'
 
 // Specifying a vertical and horizontal position as string
 Imglab.url('assets', 'image.jpeg', { width: 500, height: 500, mode: 'crop', crop: 'top,left' })
-'https://cdn.imglab.io/assets/image.jpeg?width=500&height=500&mode=crop&crop=top%2Cleft'
+'https://assets.imglab-cdn.net/image.jpeg?width=500&height=500&mode=crop&crop=top%2Cleft'
 
 // Specifying a position as string
 Imglab.url('assets', 'image.jpeg', { width: 500, height: 500, mode: 'crop', crop: 'left' })
-'https://cdn.imglab.io/assets/image.jpeg?width=500&height=500&mode=crop&crop=left'
+'https://assets.imglab-cdn.net/image.jpeg?width=500&height=500&mode=crop&crop=left'
 ```
 
 You can additionally use `Imglab.position` helper function to specify these position values:
@@ -186,15 +186,15 @@ const position = Imglab.position
 
 // Using position helper for a horizontal and vertical position
 Imglab.url('assets', 'image.jpeg', { width: 500, height: 500, mode: 'crop', crop: position('left', 'top') })
-'https://cdn.imglab.io/assets/image.jpeg?width=500&height=500&mode=crop&crop=left%2Ctop'
+'https://assets.imglab-cdn.net/image.jpeg?width=500&height=500&mode=crop&crop=left%2Ctop'
 
 // Using position helper for a vertical and horizontal position
 Imglab.url('assets', 'image.jpeg', { width: 500, height: 500, mode: 'crop', crop: position('top', 'left') })
-'https://cdn.imglab.io/assets/image.jpeg?width=500&height=500&mode=crop&crop=top%2Cleft'
+'https://assets.imglab-cdn.net/image.jpeg?width=500&height=500&mode=crop&crop=top%2Cleft'
 
 // Using position helper for a position
 Imglab.url('assets', 'image.jpeg', { width: 500, height: 500, mode: 'crop', crop: position('left') })
-'https://cdn.imglab.io/assets/image.jpeg?width=500&height=500&mode=crop&crop=left'
+'https://assets.imglab-cdn.net/image.jpeg?width=500&height=500&mode=crop&crop=left'
 ```
 
 ### Specifying URL parameters
@@ -203,14 +203,14 @@ Some imglab parameters can receive URLs as values. It is possible to specify the
 
 ```javascript
 Imglab.url('assets', 'image.jpeg', { width: 500, height: 600, watermark: 'logo.svg' })
-'https://cdn.imglab.io/assets/image.jpeg?width=500&height=600&watermark=logo.svg'
+'https://assets.imglab-cdn.net/image.jpeg?width=500&height=600&watermark=logo.svg'
 ```
 
 And even use parameters if required:
 
 ```javascript
 Imglab.url('assets', 'image.jpeg', { width: 500, height: 600, watermark: 'logo.svg?width=100&format=png' })
-'https://cdn.imglab.io/assets/image.jpeg?width=500&height=600&watermark=logo.svg%3Fwidth%3D100%26format%3Dpng'
+'https://assets.imglab-cdn.net/image.jpeg?width=500&height=600&watermark=logo.svg%3Fwidth%3D100%26format%3Dpng'
 ```
 
 Additionally you can use nested `Imglab.url` calls to specify these URL values:
@@ -225,7 +225,7 @@ Imglab.url(
     watermark: Imglab.url('assets', 'logo.svg', { width: 100, format: 'png' })
   }
 )
-'https://cdn.imglab.io/assets/image.jpeg?width=500&height=600&watermark=https%3A%2F%2Fcdn.imglab.io%2Fassets%2Flogo.svg%3Fwidth%3D100%26format%3Dpng'
+'https://assets.imglab-cdn.net/image.jpeg?width=500&height=600&watermark=https%3A%2F%2Fassets.imglab-cdn.net%2Flogo.svg%3Fwidth%3D100%26format%3Dpng'
 ```
 
 If the resource is located in a different source we can specify it using `Imglab.url`:
@@ -240,7 +240,7 @@ Imglab.url(
     watermark: Imglab.url('marketing', 'logo.svg', { width: 100, format: 'png' })
   }
 )
-'https://cdn.imglab.io/assets/image.jpeg?width=500&height=600&watermark=https%3A%2F%2Fcdn.imglab.io%2Fmarketing%2Flogo.svg%3Fwidth%3D100%26format%3Dpng'
+'https://assets.imglab-cdn.net/image.jpeg?width=500&height=600&watermark=https%3A%2F%2Fmarketing.imglab-cdn.net%2Flogo.svg%3Fwidth%3D100%26format%3Dpng'
 ```
 
 Using secure sources for URLs parameter values is possible too:
@@ -266,54 +266,54 @@ Imglab.url(
 For on-premises imglab server is possible to define custom sources pointing to your server location.
 
 * `:https` - a `boolean` value specifying if the source should use https or not (default: `true`)
-* `:host` - a `string` specifying the host where the imglab server is located. (default: `cdn.imglab.io`)
+* `:host` - a `string` specifying the host where the imglab server is located. (default: `imglab-cdn.net`)
 * `:port` - a `integer` specifying a port where the imglab server is located.
-* `:subdomains` - a `boolean` value specifying if the source should be specified using subdomains instead of using the path. (default: `false`)
+* `:subdomains` - a `boolean` value specifying if the source should be specified using subdomains instead of using the path. (default: `true`)
 
-If we have our on-premises imglab server at `http://imglab.mycompany.com:8080` with a source named `web-images` we can use the following source settings to access a `logo.png` image:
+If we have our on-premises imglab server at `http://my-company.com:8080` with a source named `images` we can use the following source settings to access a `logo.png` image:
 
 ```javascript
-const source = new Imglab.Source('web-images', { https: false, host: 'imglab.mycompany.com', port: 8080 })
+const source = new Imglab.Source('images', { https: false, host: 'my-company.com', port: 8080 })
 
 Imglab.url(source, 'logo.png', { width: 300, height: 300, format: 'png' })
-'http://imglab.mycompany.com:8080/web-images/logo.png?width=300&height=300&format=png'
+'http://images.my-company.com:8080/logo.png?width=300&height=300&format=png'
 ```
 
 It is possible to use secure sources too:
 
 ```javascript
 const source = new Imglab.Source(
-  'web-images',
+  'images',
   {
     https: false,
-    host: 'imglab.mycompany.com',
+    host: 'my-company.com',
     port: 8080,
-    secureKey: 'web-images-secure-key',
-    secureSalt: 'web-images-secure-salt'
+    secureKey: 'images-secure-key',
+    secureSalt: 'images-secure-salt'
   }
 )
 
 Imglab.url(source, 'logo.png', { width: 300, height: 300, format: 'png' })
-'http://imglab.mycompany.com:8080/web-images/logo.png?width=300&height=300&format=png&signature=generated-signature'
+'http://images.my-company.com:8080/logo.png?width=300&height=300&format=png&signature=generated-signature'
 ```
 
-### Using sudomains sources
+### Using sources with disabled subdomains
 
-In the case that your on-premises imglab server is configured to use source names as subdomains you can set `subdomains` attribute to `true` to generate URLs using subdomains:
+In the case that your on-premises imglab server is configured to use source names as paths instead of subdomains you can set `subdomains` attribute to `false`:
 
 ```javascript
 const source = new Imglab.Source(
-  'web-images',
+  'images',
   {
     https: false,
-    host: 'imglab.mycompany.com',
+    host: 'my-company.com',
     port: 8080,
-    subdomains: true
+    subdomains: false
   }
 )
 
-Imglab.url(source, 'marketing/logo.png', { width: 300, height: 300, format: 'png' })
-'http://web-images.imglab.mycompany.com:8080/marketing/logo.png?width=300&height=300&format=png'
+Imglab.url(source, 'logo.png', { width: 300, height: 300, format: 'png' })
+'http://my-company.com:8080/images/logo.png?width=300&height=300&format=png'
 ```
 
 ## License
