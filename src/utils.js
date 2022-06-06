@@ -10,8 +10,8 @@ export default class Utils {
   }
 
   static normalizeParams(params) {
-    return Object.entries(params).reduce((result, [key, value]) => {
-      return Object.assign(result, Utils.#normalizeParam(Utils.#normalizeKey(key), value))
+    return Object.entries(params).reduce((normalizedParams, [key, value]) => {
+      return Object.assign(normalizedParams, Utils.#normalizeParam(Utils.#normalizeKey(key), value))
     }, {})
   }
 
