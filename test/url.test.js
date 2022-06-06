@@ -133,6 +133,12 @@ describe('Url', () => {
       expect(url).toBe('https://assets.imglab-cdn.net/example.jpeg?trim=color&trim-color=orange')
     })
 
+    it('returns url with expires param using a Date instance', () => {
+      const url = Url.url('assets', 'example.jpeg', { width: 200, height: 300, expires: new Date(1464096368 * 1000) })
+
+      expect(url).toBe('https://assets.imglab-cdn.net/example.jpeg?width=200&height=300&expires=1464096368')
+    })
+
     it('returns url with path starting with slash', () => {
       const url = Url.url('assets', '/example.jpeg', { width: 200, height: 300, format: 'png' })
 
@@ -297,6 +303,12 @@ describe('Url', () => {
       const url = Url.url(new Source('assets'), 'example.jpeg', { trim: 'color', 'trim-color': 'orange' })
 
       expect(url).toBe('https://assets.imglab-cdn.net/example.jpeg?trim=color&trim-color=orange')
+    })
+
+    it('returns url with expires param using a Date instance', () => {
+      const url = Url.url(new Source('assets'), 'example.jpeg', { width: 200, height: 300, expires: new Date(1464096368 * 1000) })
+
+      expect(url).toBe('https://assets.imglab-cdn.net/example.jpeg?width=200&height=300&expires=1464096368')
     })
 
     it('returns url with disabled subdomains', () => {
@@ -660,6 +672,20 @@ describe('Url', () => {
       )
 
       expect(url).toBe('https://assets.imglab-cdn.net/example.jpeg?trim=color&trim-color=orange&signature=cfYzBKvaWJhg_4ArtL5IafGYU6FEgRb_5ZADIgvviWw')
+    })
+
+    it('returns url with expires param using a Date instance', () => {
+      const url = Url.url(
+        new Source('assets', { secureKey: SECURE_KEY, secureSalt: SECURE_SALT }),
+        'example.jpeg',
+        {
+          width: 200,
+          height: 300,
+          expires: new Date(1464096368 * 1000)
+        }
+      )
+
+      expect(url).toBe('https://assets.imglab-cdn.net/example.jpeg?width=200&height=300&expires=1464096368&signature=DpkRMiecDlOaQAQM5IQ8Cd4ek8nGvfPxV6XmCN0GbAU')
     })
 
     it('returns url with disabled subdomains', () => {

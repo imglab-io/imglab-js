@@ -261,6 +261,21 @@ Imglab.url(
 
 `signature` query parameter will be automatically generated and attached to the nested URL value.
 
+### Specifying URLs with expiration timestamp
+
+The `expires` parameter allows you to specify a UNIX timestamp in seconds after which the request is expired.
+
+If a `Date` instance is used as value to `expires` parameter it will be automatically converted to UNIX timestamp. In the following example, we specify an expiration time of one hour, adding 3600 seconds to the current time:
+
+```javascript
+// Date object uses milliseconds internally so we need to multiply 3600 by 1000
+var expires = new Date(Date.now() + (3600 * 1000))
+
+Imglab.url('assets', 'image.jpeg', { width: 500, expires: expires })
+```
+
+> Note: The `expires` parameter should be used in conjunction with secure sources. Otherwise, `expires` value could be tampered with.
+
 ## Generating URLs for on-premises imglab server
 
 For on-premises imglab server is possible to define custom sources pointing to your server location.

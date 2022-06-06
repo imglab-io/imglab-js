@@ -28,6 +28,9 @@ describe('Utils', () => {
       expect(Utils.normalizeParams({ trim: 'color', 'trim-color': 'orange' })).toEqual({ trim: 'color', 'trim-color': 'orange' })
       expect(Utils.normalizeParams({ trim: 'color', trim_color: 'orange' })).toEqual({ trim: 'color', 'trim-color': 'orange' })
       expect(Utils.normalizeParams({ trim: 'color', trimColor: 'orange' })).toEqual({ trim: 'color', 'trim-color': 'orange' })
+      expect(Utils.normalizeParams({ width: 200, expires: 1464096368 })).toEqual({ width: 200, expires: 1464096368 })
+      expect(Utils.normalizeParams({ width: 200, expires: '1464096368' })).toEqual({ width: 200, expires: '1464096368' })
+      expect(Utils.normalizeParams({ width: 200, expires: new Date(1464096368 * 1000)})).toEqual({ width: 200, expires: 1464096368 })
     })
   })
 
