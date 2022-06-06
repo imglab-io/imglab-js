@@ -265,10 +265,11 @@ Imglab.url(
 
 The `expires` parameter allows you to specify a UNIX timestamp in seconds after which the request is expired.
 
-In the following example we specify an expiration time of one hour from the current time:
+If a `Date` instance is used as value to `expires` parameter it will be automatically converted to UNIX timestamp. In the following example, we specify an expiration time of one hour, adding 3600 seconds to the current time:
 
 ```javascript
-const expires = Math.floor(Date.now() / 1000) + 3600
+// Date object uses milliseconds internally so we need to multiply 3600 by 1000
+const expires = Date.now() + (3600 * 1000)
 
 Imglab.url('assets', 'image.jpeg', { width: 500, expires: expires })
 ```

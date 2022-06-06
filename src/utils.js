@@ -10,9 +10,8 @@ export default class Utils {
   }
 
   static normalizeParams(params) {
-    return Object.keys(params).reduce((result, key) => {
-      result[Utils.#normalizeKey(key)] = params[key]
-      return result
+    return Object.entries(params).reduce((result, [key, value]) => {
+      return Object.assign(result, Utils.#normalizeParam(Utils.#normalizeKey(key), value))
     }, {})
   }
 
@@ -28,5 +27,14 @@ export default class Utils {
 
   static #normalizeKey(key) {
     return key.replace(Utils.#NORMALIZE_KEY_REGEXP, '$1-$2').replace('_', '-').toLowerCase()
+  }
+
+  static #normalizeParam(key, value) {
+    switch(true) {
+      case key === 'expires' && value instanceof Date:
+        return { [key]: Math.floor(value / 1000) }
+      default:
+        return { [key]: value }
+    }
   }
 }
