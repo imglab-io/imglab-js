@@ -269,7 +269,7 @@ If a `Date` instance is used as value to `expires` parameter it will be automati
 
 ```javascript
 // Date object uses milliseconds internally so we need to multiply 3600 by 1000
-const expires = Date.now() + (3600 * 1000)
+var expires = new Date(Date.now() + (3600 * 1000))
 
 Imglab.url('assets', 'image.jpeg', { width: 500, expires: expires })
 ```
