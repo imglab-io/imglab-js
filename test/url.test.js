@@ -23,6 +23,12 @@ describe('Url', () => {
       expect(url).toBe('https://assets.imglab-cdn.net/example.jpeg?width=200&height=300&format=png')
     })
 
+    it('returns url with null params', () => {
+      const url = Url.url('assets', 'example.jpeg', { width: 200, download: null })
+
+      expect(url).toBe('https://assets.imglab-cdn.net/example.jpeg?width=200&download=')
+    })
+
     it('returns url with params using string path', () => {
       const url = Url.url('assets', 'example.jpeg', { width: 200, height: 300, watermark: 'example.svg', format: 'png' })
 
@@ -223,6 +229,12 @@ describe('Url', () => {
       const url = Url.url(new Source('assets'), 'example.jpeg', { width: 200, height: 300, format: 'png' })
 
       expect(url).toBe('https://assets.imglab-cdn.net/example.jpeg?width=200&height=300&format=png')
+    })
+
+    it('returns url with null params', () => {
+      const url = Url.url(new Source('assets'), 'example.jpeg', { width: 200, download: null })
+
+      expect(url).toBe('https://assets.imglab-cdn.net/example.jpeg?width=200&download=')
     })
 
     it('returns url with params using string path', () => {
@@ -571,6 +583,19 @@ describe('Url', () => {
       )
 
       expect(url).toBe('https://assets.imglab-cdn.net/example.jpeg?width=200&height=300&format=png&signature=VJ159IlBl_AlN59QWvyJov5SlQXlrZNpXgDJLJgzP8g')
+    })
+
+    it('returns url with null params', () => {
+      const url = Url.url(
+        new Source('assets', { secureKey: SECURE_KEY, secureSalt: SECURE_SALT }),
+        'example.jpeg',
+        {
+          width: 200,
+          download: null
+        }
+      )
+
+      expect(url).toBe('https://assets.imglab-cdn.net/example.jpeg?width=200&download=&signature=ljL9HNRaxVrk7jfQaf6FPYFZn4RJzQPCW-aVNJoIQI8')
     })
 
     it('returns url with params using string path', () => {
