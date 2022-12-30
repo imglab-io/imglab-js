@@ -8,12 +8,12 @@ export default class Sequence {
 
     const ratio = (last / first) ** (1 / (size - 1))
 
-    const sequence = [first]
+    const seq = [first]
     for (let i = 1; i < size - 1; i++) {
-      sequence.push(sequence[i - 1] * ratio)
+      seq.push(seq[i - 1] * ratio)
     }
-    sequence.push(last)
+    seq.push(last)
 
-    return sequence.map((value) => Math.round(value))
+    return seq.map((value) => Math.round(value))
   }
 }
