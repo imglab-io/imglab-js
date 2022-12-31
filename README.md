@@ -49,7 +49,7 @@ Imglab.url('assets', 'example.jpeg', { width: 500, height: 600 })
 
 You can use `Imglab.url` function to generate imglab compatible URLs for your application.
 
-The easiest way to generate a URL is to specify the `sourceName`, `path` and required `parameters`:
+The easiest way to generate a URL is to specify the name of the `source`, a `path` and required `parameters`:
 
 ```javascript
 Imglab.url('assets', 'image.jpeg', { width: 500, height: 600 })

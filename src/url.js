@@ -3,13 +3,13 @@ import Signature from './signature'
 import Utils from './utils'
 
 export default class Url {
-  static url(sourceNameOrSource, path, params = {}) {
-    if (typeof sourceNameOrSource === 'string') {
-      return Url.#urlForSource(new Source(sourceNameOrSource), path, params)
+  static url(source, path, params = {}) {
+    if (typeof source === 'string') {
+      return Url.#urlForSource(new Source(source), path, params)
     }
 
-    if (sourceNameOrSource instanceof Source) {
-      return Url.#urlForSource(sourceNameOrSource, path, params)
+    if (source instanceof Source) {
+      return Url.#urlForSource(source, path, params)
     }
 
     throw new Error('Invalid source name or source')
