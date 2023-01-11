@@ -33,7 +33,7 @@ export default class Utils {
     switch(true) {
       case key === 'expires' && value instanceof Date:
         return { [key]: Math.floor(value / 1000) }
-      case value === null:
+      case value === undefined || value === null:
         return { [key]: '' }
       default:
         return { [key]: value }

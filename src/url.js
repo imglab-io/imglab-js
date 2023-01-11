@@ -1,6 +1,6 @@
 import Source from './source'
 import Signature from './signature'
-import Utils from './utils'
+import Utils from './url/utils'
 
 export default class Url {
   static url(source, path, params = {}) {

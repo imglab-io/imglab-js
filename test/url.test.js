@@ -32,6 +32,12 @@ describe('Url', () => {
       expect(url).toBe('https://assets.imglab-cdn.net/example.jpeg?width=200&download=')
     })
 
+    it('returns url with undefined params', () => {
+      const url = Url.url('assets', 'example.jpeg', { width: 200, download: undefined })
+
+      expect(url).toBe('https://assets.imglab-cdn.net/example.jpeg?width=200&download=')
+    })
+
     it('returns url with params using string path', () => {
       const url = Url.url('assets', 'example.jpeg', { width: 200, height: 300, watermark: 'example.svg', format: 'png' })
 
@@ -234,6 +240,12 @@ describe('Url', () => {
 
     it('returns url with null params', () => {
       const url = Url.url(SOURCE, 'example.jpeg', { width: 200, download: null })
+
+      expect(url).toBe('https://assets.imglab-cdn.net/example.jpeg?width=200&download=')
+    })
+
+    it('returns url with undefined params', () => {
+      const url = Url.url(SOURCE, 'example.jpeg', { width: 200, download: undefined })
 
       expect(url).toBe('https://assets.imglab-cdn.net/example.jpeg?width=200&download=')
     })
@@ -480,6 +492,12 @@ describe('Url', () => {
 
     it('returns url with null params', () => {
       const url = Url.url(SECURE_SOURCE, 'example.jpeg', { width: 200, download: null })
+
+      expect(url).toBe('https://assets.imglab-cdn.net/example.jpeg?width=200&download=&signature=ljL9HNRaxVrk7jfQaf6FPYFZn4RJzQPCW-aVNJoIQI8')
+    })
+
+    it('returns url with undefined params', () => {
+      const url = Url.url(SECURE_SOURCE, 'example.jpeg', { width: 200, download: undefined })
 
       expect(url).toBe('https://assets.imglab-cdn.net/example.jpeg?width=200&download=&signature=ljL9HNRaxVrk7jfQaf6FPYFZn4RJzQPCW-aVNJoIQI8')
     })

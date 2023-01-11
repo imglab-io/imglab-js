@@ -1,7 +1,7 @@
 export default class Sequence {
-  static #DEFAULT_SIZE = 16
+  static DEFAULT_SIZE = 16
 
-  static sequence(first, last, size = Sequence.#DEFAULT_SIZE) {
+  static sequence(first, last, size = Sequence.DEFAULT_SIZE) {
     if (size <= 0) return []
     if (size === 1) return [first]
     if (size === 2) return [first, last]
