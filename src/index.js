@@ -13,4 +13,4 @@ const position = Position.position
 const range = Range.range
 const sequence = Sequence.sequence
 
-export default { url, srcset, Source, color, position, range, sequence }
+export default { url, srcset, Source, color, position, Range, range, sequence }
