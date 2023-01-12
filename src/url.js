@@ -47,11 +47,9 @@ export default class Url {
 
     if (source.isSecure()) {
       params.signature = Signature.generate(source, path, new URLSearchParams(params).toString())
-
-      return new URLSearchParams(params)
-    } else {
-      return new URLSearchParams(params)
     }
+
+    return new URLSearchParams(params)
   }
 
   static #encodeEmptyParams (source, path) {
