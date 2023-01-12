@@ -3271,12 +3271,12 @@ describe('Srcset', () => {
     })
 
     it('throws a new error when width is fluid and dpr is also fluid', () => {
-       expect(() => { Srcset.srcset(SECURE_SOURCE, 'example.jpeg', { width: range(100, 300), dpr: range(1, 3) }) }).toThrow(Error)
-       expect(() => { Srcset.srcset(SECURE_SOURCE, 'example.jpeg', { width: range(100, 300), dpr: [1, 2, 3] }) }).toThrow(Error)
-       expect(() => { Srcset.srcset(SECURE_SOURCE, 'example.jpeg', { width: [100, 200, 300], dpr: range(1, 3) }) }).toThrow(Error)
-       expect(() => { Srcset.srcset(SECURE_SOURCE, 'example.jpeg', { width: [100, 200, 300], dpr: [1, 2, 3] }) }).toThrow(Error)
-       expect(() => { Srcset.srcset(SECURE_SOURCE, 'example.jpeg', { width: sequence(100, 300), dpr: range(1, 3) }) }).toThrow(Error)
-       expect(() => { Srcset.srcset(SECURE_SOURCE, 'example.jpeg', { width: sequence(100, 300), dpr: [1, 2, 3] }) }).toThrow(Error)
+      expect(() => { Srcset.srcset(SECURE_SOURCE, 'example.jpeg', { width: range(100, 300), dpr: range(1, 3) }) }).toThrow(Error)
+      expect(() => { Srcset.srcset(SECURE_SOURCE, 'example.jpeg', { width: range(100, 300), dpr: [1, 2, 3] }) }).toThrow(Error)
+      expect(() => { Srcset.srcset(SECURE_SOURCE, 'example.jpeg', { width: [100, 200, 300], dpr: range(1, 3) }) }).toThrow(Error)
+      expect(() => { Srcset.srcset(SECURE_SOURCE, 'example.jpeg', { width: [100, 200, 300], dpr: [1, 2, 3] }) }).toThrow(Error)
+      expect(() => { Srcset.srcset(SECURE_SOURCE, 'example.jpeg', { width: sequence(100, 300), dpr: range(1, 3) }) }).toThrow(Error)
+      expect(() => { Srcset.srcset(SECURE_SOURCE, 'example.jpeg', { width: sequence(100, 300), dpr: [1, 2, 3] }) }).toThrow(Error)
     })
 
     it('throws a new error when width is not fluid and height is fluid', () => {

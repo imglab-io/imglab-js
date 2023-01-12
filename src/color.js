@@ -150,7 +150,7 @@ export default class Color {
     'yellowgreen'
   ]
 
-  static color() {
+  static color () {
     if (arguments.length === 1 && Color.#COLORS.includes(arguments[0])) {
       return arguments[0]
     }
@@ -166,11 +166,11 @@ export default class Color {
     throw new Error('Invalid color')
   }
 
-  static #areValidComponents() {
+  static #areValidComponents () {
     return [...arguments].every((component) => { return Color.#isValidComponent(component) })
   }
 
-  static #isValidComponent(component) {
+  static #isValidComponent (component) {
     return Number.isInteger(component) && component >= 0 && component <= 255
   }
 }

@@ -3,7 +3,7 @@ import Range from '../../src/range'
 
 const range = Range.range
 
-describe ('Utils', () => {
+describe('Utils', () => {
   describe('normalizeParams', () => {
     it('returns normalized params', () => {
       expect(Utils.normalizeParams({})).toEqual({})
@@ -11,10 +11,10 @@ describe ('Utils', () => {
       expect(Utils.normalizeParams({ dpr: [], width: [] })).toEqual({})
 
       expect(Utils.normalizeParams({ blur: 100, dpr: [], width: [], format: 'png' })).toEqual(
-        { blur: 100, format: 'png'}
+        { blur: 100, format: 'png' }
       )
 
-      expect(Utils.normalizeParams({ blur: 100, dpr: 1, width: 100, format: 'png'})).toEqual(
+      expect(Utils.normalizeParams({ blur: 100, dpr: 1, width: 100, format: 'png' })).toEqual(
         { blur: 100, dpr: 1, width: 100, format: 'png' }
       )
 

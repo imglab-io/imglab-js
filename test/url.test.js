@@ -189,7 +189,7 @@ describe('Url', () => {
     })
 
     it('returns url with subfolder path starting and ending with slash', () => {
-      const url = Url.url('assets', '/subfolder/example.jpeg/', { width: 200, height: 300, format: 'png'})
+      const url = Url.url('assets', '/subfolder/example.jpeg/', { width: 200, height: 300, format: 'png' })
 
       expect(url).toBe('https://assets.imglab-cdn.net/subfolder/example.jpeg?width=200&height=300&format=png')
     })
@@ -212,7 +212,7 @@ describe('Url', () => {
       expect(url).toBe('https://assets.imglab-cdn.net/http%3A%2F%2Fassets.com%2Fsubfolder%2Fexample%252C01%252C02.jpeg?width=200&height=300&format=png')
     })
 
-    it('returns url with path using a https url', () =>  {
+    it('returns url with path using a https url', () => {
       const url = Url.url('assets', 'https://assets.com/subfolder/example.jpeg', { width: 200, height: 300, format: 'png' })
 
       expect(url).toBe('https://assets.imglab-cdn.net/https%3A%2F%2Fassets.com%2Fsubfolder%2Fexample.jpeg?width=200&height=300&format=png')

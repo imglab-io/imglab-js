@@ -3,29 +3,29 @@ export default class Range {
   #last
   #length
 
-  static range(first, last) {
+  static range (first, last) {
     return new Range(first, last)
   }
 
-  constructor(first, last) {
+  constructor (first, last) {
     this.#first = first
     this.#last = last
     this.#length = Math.abs(this.last - this.first) + 1
   }
 
-  get first() {
+  get first () {
     return this.#first
   }
 
-  get last() {
+  get last () {
     return this.#last
   }
 
-  get length() {
+  get length () {
     return this.#length
   }
 
-  toArray() {
+  toArray () {
     const inc = this.first < this.last ? 1 : -1
 
     return Array.from({ length: this.length }, (_, i) => this.first + (i * inc))
