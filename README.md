@@ -34,9 +34,9 @@ If you prefer to use a `script` tag in your code to load `@imglab/core` try to u
 
 ```html
 <!-- Using UNPKG -->
-<script src="https://unpkg.com/@imglab/core@0.2.0/dist/imglab.umd.js"></script>
+<script src="https://unpkg.com/@imglab/core@0.3.0/dist/imglab.umd.js"></script>
 <!-- Or using JDELIVR -->
-<script src="https://cdn.jsdelivr.net/npm/@imglab/core@0.2.0/dist/imglab.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@imglab/core@0.3.0/dist/imglab.umd.js"></script>
 ```
 
 After adding the library you can use it normally:
