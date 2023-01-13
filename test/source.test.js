@@ -60,13 +60,13 @@ describe('Source', () => {
   describe('scheme', () => {
     expect(new Source('assets').scheme()).toBe('https')
     expect(new Source('assets', { https: true }).scheme()).toBe('https')
-    expect(new Source('assets', { https: false}).scheme()).toBe('http')
+    expect(new Source('assets', { https: false }).scheme()).toBe('http')
   })
 
   describe('host', () => {
     expect(new Source('assets').host).toBe('assets.imglab-cdn.net')
     expect(new Source('assets', { subdomains: false }).host).toBe('imglab-cdn.net')
-    expect(new Source('assets', { subdomains: false, host: 'imglab.net'}).host).toBe('imglab.net')
+    expect(new Source('assets', { subdomains: false, host: 'imglab.net' }).host).toBe('imglab.net')
     expect(new Source('assets', { subdomains: true }).host).toBe('assets.imglab-cdn.net')
     expect(new Source('assets', { subdomains: true, host: 'imglab.net' }).host).toBe('assets.imglab.net')
   })

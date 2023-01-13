@@ -11,7 +11,7 @@ export default class Source {
   #secureSalt
   #subdomains
 
-  constructor(name, opts = {}) {
+  constructor (name, opts = {}) {
     opts = { ...Source.#DEFAULT_OPTS, ...opts }
 
     this.#host = opts.host
@@ -23,43 +23,43 @@ export default class Source {
     this.#subdomains = opts.subdomains
   }
 
-  get host() {
+  get host () {
     return (this.#subdomains ? `${this.#name}.${this.#host}` : this.#host)
   }
 
-  get https() {
+  get https () {
     return this.#https
   }
 
-  get name() {
+  get name () {
     return this.#name
   }
 
-  get port() {
+  get port () {
     return this.#port
   }
 
-  get secureKey() {
+  get secureKey () {
     return this.#secureKey
   }
 
-  get secureSalt() {
+  get secureSalt () {
     return this.#secureSalt
   }
 
-  get subdomains() {
+  get subdomains () {
     return this.#subdomains
   }
 
-  scheme() {
+  scheme () {
     return (this.#https ? 'https' : 'http')
   }
 
-  path(path) {
+  path (path) {
     return (this.#subdomains ? path : _path.join(this.#name, path))
   }
 
-  isSecure() {
+  isSecure () {
     return !!(this.#secureKey && this.#secureSalt)
   }
 }

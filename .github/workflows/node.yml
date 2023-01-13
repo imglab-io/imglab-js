@@ -12,12 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: ['18', '17', '16', '15', '14']
+        node: ['19', '18', '17', '16', '15', '14']
     container: node:${{ matrix.node }}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Restore dependencies cache
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ~/.npm
         key: ${{ runner.os }}-${{ matrix.node }}-${{ hashFiles('**/package-lock.json') }}

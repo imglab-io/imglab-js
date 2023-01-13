@@ -1,7 +1,7 @@
 import crypto from 'crypto'
 
 export default class Signature {
-  static generate(source, path, encodedParams = null) {
+  static generate (source, path, encodedParams = null) {
     const decodedSecureKey = Buffer.from(source.secureKey, 'base64')
     const decodedSecureSalt = Buffer.from(source.secureSalt, 'base64')
     const hmac = crypto.createHmac('sha256', decodedSecureKey)

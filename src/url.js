@@ -1,25 +1,25 @@
 import Source from './source'
 import Signature from './signature'
-import Utils from './utils'
+import Utils from './url/utils'
 
 export default class Url {
-  static url(sourceNameOrSource, path, params = {}) {
-    if (typeof sourceNameOrSource === 'string') {
-      return Url.#urlForSource(new Source(sourceNameOrSource), path, params)
+  static url (source, path, params = {}) {
+    if (typeof source === 'string') {
+      return Url.#urlForSource(new Source(source), path, params)
     }
 
-    if (sourceNameOrSource instanceof Source) {
-      return Url.#urlForSource(sourceNameOrSource, path, params)
+    if (source instanceof Source) {
+      return Url.#urlForSource(source, path, params)
     }
 
     throw new Error('Invalid source name or source')
   }
 
-  static #urlForSource(source, path, params) {
-    var normalizedPath = Utils.normalizePath(path)
-    var normalizedParams = Utils.normalizeParams(params)
+  static #urlForSource (source, path, params) {
+    const normalizedPath = Utils.normalizePath(path)
+    const normalizedParams = Utils.normalizeParams(params)
 
-    var url = new URL('https://imglab-cdn.net')
+    const url = new URL('https://imglab-cdn.net')
 
     url.protocol = source.scheme()
     url.hostname = source.host
@@ -30,7 +30,7 @@ export default class Url {
     return url.toString()
   }
 
-  static #encodePath(path) {
+  static #encodePath (path) {
     if (Utils.isWebURL(path)) {
       return encodeURIComponent(path)
     } else {
@@ -40,21 +40,19 @@ export default class Url {
     }
   }
 
-  static #encodeParams(source, path, params) {
+  static #encodeParams (source, path, params) {
     if (Object.keys(params).length === 0) {
       return Url.#encodeEmptyParams(source, path)
     }
 
     if (source.isSecure()) {
-      params['signature'] = Signature.generate(source, path, new URLSearchParams(params).toString())
-
-      return new URLSearchParams(params)
-    } else {
-      return new URLSearchParams(params)
+      params.signature = Signature.generate(source, path, new URLSearchParams(params).toString())
     }
+
+    return new URLSearchParams(params)
   }
 
-  static #encodeEmptyParams(source, path) {
+  static #encodeEmptyParams (source, path) {
     if (source.isSecure()) {
       return new URLSearchParams({ signature: Signature.generate(source, path) })
     } else {

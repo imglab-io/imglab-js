@@ -2,7 +2,7 @@ export default class Position {
   static #HORIZONTAL = ['left', 'center', 'right']
   static #VERTICAL = ['top', 'middle', 'bottom']
 
-  static position() {
+  static position () {
     if (arguments.length === 1 && Position.#isValidPosition(arguments[0])) {
       return arguments[0]
     }
@@ -14,7 +14,7 @@ export default class Position {
     throw new Error('Invalid position')
   }
 
-  static #isValidPosition() {
+  static #isValidPosition () {
     if (arguments.length === 1 && Position.#isValidDirection(arguments[0])) {
       return true
     }
@@ -26,11 +26,11 @@ export default class Position {
     return false
   }
 
-  static #isValidDirection(direction) {
+  static #isValidDirection (direction) {
     return Position.#HORIZONTAL.includes(direction) || Position.#VERTICAL.includes(direction)
   }
 
-  static #areValidDirections(directionA, directionB) {
+  static #areValidDirections (directionA, directionB) {
     return (Position.#HORIZONTAL.includes(directionA) && Position.#VERTICAL.includes(directionB)) ||
     (Position.#HORIZONTAL.includes(directionB) && Position.#VERTICAL.includes(directionA))
   }
